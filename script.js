@@ -1,9 +1,17 @@
 
+const url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=pasta&cuisine=italian&instructionsRequired=true&number=25';
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '25c699ff54msh434da319c653bbdp1fc1d3jsnf90a41af76ed',
+		'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+	}
+};
 
-async function getRecipes() {
-    const response = await fetch('https://api.spoonacular.com/recipes/complexSearch?query=pasta&maxFat=25&number=2');
-    const recipes = await response.json();
-    console.log(recipes)
+try {
+	const response = await fetch(url, options);
+	const result = await response.text();
+	console.log(result);
+} catch (error) {
+	console.error(error);
 }
-
-getRecipes()
