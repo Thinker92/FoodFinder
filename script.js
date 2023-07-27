@@ -40,6 +40,9 @@ function searchRecipes() {
 }
 
 function displayResults(results) {
+    // Clearing Old search results
+    recipeList.innerHTML = '';
+
     results.forEach(recipe => {
         const recipeDiv = document.createElement('div');
         recipeDiv.innerHTML = `
@@ -54,6 +57,7 @@ function displayResults(results) {
 
         saveButton.addEventListener('click', function(e) {
             console.log("Save button clicked");
+            addRecipeToLocalStorage(recipe);
         });
 
         newImage.addEventListener('click', function(e) {
@@ -61,6 +65,17 @@ function displayResults(results) {
             fetchRecipeDetails(recipeID);
         });
     });
+}
+
+function addRecipeToLocalStorage(recipe) {
+    let allRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
+    allRecipes.push(recipe);
+    localStorage.setItem("savedRecipes", JSON.stringify(allRecipes));
+}
+
+function loadRecipesFromLocal() {
+    let allRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
+    allRecipes.forEach(recipe => displayRecipe(recipe));
 }
 
 function fetchRecipeDetails(recipeID) {
