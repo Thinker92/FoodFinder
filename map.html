@@ -8,8 +8,24 @@
     <title>Food Finder Map</title>
 </head>
 <body>
-    <header></header>
-    <main></main>
-    <script src="./script.js"></script>
+    <header class="has-text-centered p-2 mb-3 has-background-primary has-text-white">
+        <h1 class="is-size-1">Find Food</h1>
+        <h2></h2>
+    </header>
+    <main class="container is-fluid">
+        <section class="columns is-centered">
+            <div id="map-search" class="column is-4 field has-addons box my-3">
+                <div class="control is-expanded">
+                    <input id="map-input" class="input is-rounded" type="text" placeholder="Search your city">
+                </div>
+                <div class="control">
+                    <button id="search-btn" class="button is-primary">Search</button>
+                </div>
+        </section>
+        <section class="columns is-centered">
+            <div id="map-display" class="column box"></div>
+        </section>
+    </main>
+    <script src="./assets/script.js"></script>
 </body>
 </html>
