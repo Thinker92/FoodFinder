@@ -46,21 +46,34 @@ function displayResults(results) {
     results.forEach(recipe => {
         const recipeDiv = document.createElement('div');
         recipeDiv.innerHTML = `
-            <h2>${recipe.title}</h2>
-            <img class="recipeImage" src="${recipe.image}" alt="${recipe.title}" data-id="${recipe.id}">
-            <button class="saveButton" value="${recipe.id}">Save</button>
+        <div class="card" data-id="${recipe.id}">
+        <div class="card-content" data-id="${recipe.id}">
+          <div class="media" data-id="${recipe.id}">
+            <div class="media-left">
+              <figure class="image is-128x128" data-id="${recipe.id}">
+              <img class="recipeImage" src="${recipe.image}" alt="${recipe.title}" data-id="${recipe.id}">
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4" data-id="${recipe.id}">${recipe.title}</p>
+            </div>
+            <button class="viewButton" value="${recipe.id}">View Recipe</button>
+          </div>
+        </div>
+      </div>
         `;
         recipeList.appendChild(recipeDiv);
 
-        const saveButton = recipeDiv.querySelector('.saveButton');
-        const newImage = recipeDiv.querySelector('.recipeImage');
+        const viewButton = recipeDiv.querySelector('.viewButton');
+        const cardEl = recipeDiv.querySelector('.card');
 
-        saveButton.addEventListener('click', function(e) {
-            console.log("Save button clicked");
-            addRecipeToLocalStorage(recipe);
+        viewButton.addEventListener('click', function(e) {
+            console.log("View button clicked");
+            recipeList.style.display = "None";
+            // addRecipeToLocalStorage(recipe);
         });
 
-        newImage.addEventListener('click', function(e) {
+        cardEl.addEventListener('click', function(e) {
             const recipeID = e.target.dataset.id;
             fetchRecipeDetails(recipeID);
         });
@@ -92,10 +105,10 @@ function fetchRecipeDetails(recipeID) {
             console.log(result);
             result.forEach(item => {
                 item.steps.forEach(step => {
-                    console.log(`Step Text: ${step.step}`)
                     step.ingredients.forEach(item => {
                         console.log(`Ingredient: ${item.name}`);
                     })
+                    console.log(`Step Text: ${step.step}`)
                 })
             })
         })
