@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
     <title>Food Finder Map</title>
 </head>
@@ -16,16 +16,16 @@
         <section class="columns is-centered">
             <div id="map-search" class="column is-4 field has-addons box my-3">
                 <div class="control is-expanded">
-                    <input id="map-input" class="input is-rounded" type="text" placeholder="Search your city">
+                    <input id="map-input" class="input is-rounded" type="text" placeholder="Search by city, state">
                 </div>
                 <div class="control">
                     <button id="search-btn" class="button is-primary">Search</button>
                 </div>
         </section>
         <section class="columns is-centered">
-            <div id="map-display" class="column box"></div>
+            <div id="map-display"></div>
         </section>
     </main>
-    <script src="./assets/script.js"></script>
+    <script src="./map.js"></script>
 </body>
 </html>
