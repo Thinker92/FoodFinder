@@ -68,6 +68,7 @@ function displayResults(results) {
         const cardEl = recipeDiv.querySelector('.card');
 
         viewButton.addEventListener('click', function(e) {
+            
             console.log("View button clicked");
             recipeList.style.display = "None";
             // addRecipeToLocalStorage(recipe);
@@ -103,14 +104,53 @@ function fetchRecipeDetails(recipeID) {
         })
         .then(result => {
             console.log(result);
+
+            let singleRecipeDiv = document.getElementById('singleRecipe');
+            singleRecipeDiv.innerHTML = ''; // clear existing content
+
+            // create a close button
+            let closeButton = document.createElement('button');
+            closeButton.textContent = 'X';
+            closeButton.addEventListener('click', function() {
+                singleRecipeDiv.style.display = 'none'; // hide single recipe
+                recipeList.style.display = 'block'; // show recipe list
+            });
+            singleRecipeDiv.appendChild(closeButton);
+
             result.forEach(item => {
+                // create elements for the title, ingredients, and steps
+                let title = document.createElement('h1');
+                title.textContent = item.name;
+                singleRecipeDiv.appendChild(title);
+
+                let ingredientsHeading = document.createElement('h1');
+                ingredientsHeading.textContent = 'Ingredients:';
+                singleRecipeDiv.appendChild(ingredientsHeading);
+
+                let ingredientsList = document.createElement('ul');
+                singleRecipeDiv.appendChild(ingredientsList);
+
+                let stepsHeading = document.createElement('h1');
+                stepsHeading.textContent = 'Cooking Instructions:';
+                singleRecipeDiv.appendChild(stepsHeading);
+
+                let steps = document.createElement('p');
+                singleRecipeDiv.appendChild(steps);
+
                 item.steps.forEach(step => {
                     step.ingredients.forEach(item => {
                         console.log(`Ingredient: ${item.name}`);
+                        let ingredient = document.createElement('li');
+                        ingredient.textContent = item.name;
+                        ingredientsList.appendChild(ingredient);
                     })
                     console.log(`Step Text: ${step.step}`)
+                    steps.textContent += step.step + ' ';
                 })
             })
+
+            singleRecipeDiv.style.display = 'block';
+            recipeList.style.display = 'none';
         })
         .catch(error => {
             console.error(error);
