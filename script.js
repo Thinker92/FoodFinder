@@ -68,9 +68,11 @@ function displayResults(results) {
         const cardEl = recipeDiv.querySelector('.card');
 
         viewButton.addEventListener('click', function(e) {
-            
+            const recipeID = e.target.dataset.id;
+
             console.log("View button clicked");
-            recipeList.style.display = "None";
+            // recipeList.style.display = "None";
+            // fetchRecipeDetails(recipeID);
             // addRecipeToLocalStorage(recipe);
         });
 
