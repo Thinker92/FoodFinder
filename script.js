@@ -46,9 +46,11 @@ function displayResults(results) {
     results.forEach(recipe => {
         const recipeDiv = document.createElement('div');
         recipeDiv.innerHTML = `
-            <h2>${recipe.title}</h2>
             <img class="recipeImage" src="${recipe.image}" alt="${recipe.title}" data-id="${recipe.id}">
+            <div class="cardUnderSection">
+            <h2>${recipe.title}</h2>
             <button class="saveButton" value="${recipe.id}">Save</button>
+            </div>
         `;
         recipeList.appendChild(recipeDiv);
 

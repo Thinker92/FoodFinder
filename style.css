@@ -1,1 +1,45 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+#recipeResults > div {
+    width: 300px;
+    height: 300px;
+    margin-top: 10px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#recipeResults > div > .cardUnderSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 25%;
+    width: 90%;
+}
+
+#recipeResults > div > .cardUnderSection > .saveButton {
+    width: 70px;
+    padding: 0.4rem;
+    font-weight: 600;
+    border: none;
+    background-color: rgb(55, 110, 230);
+    color: white;
+    border-radius: 5px;
+}
+
+#recipeResults > div > .cardUnderSection > h2 {
+    font-weight: 700;
+}
+
+#recipeResults {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#searchButton {
+    height: 40px;
+    width: 60px;
+}
