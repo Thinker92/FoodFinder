@@ -45,3 +45,18 @@
     height: 40px;
     width: 60px;
 }
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    text-align: left;
+    width: 50%;
+    margin: 0 auto;
+    max-height: 80vh;
+    overflow: auto;
+    border-radius: 6px;
+}
+.modal-close {
+    top: 10px;
+    right: 10px;
+}
