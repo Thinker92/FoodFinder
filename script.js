@@ -1,6 +1,7 @@
 const inputEl = document.getElementById("userInput");
 const searchButton = document.getElementById("searchButton");
 const recipeList = document.getElementById("recipeResults");
+const myRecipesButton = document.getElementById("myRecipesButton");
 
 const options = {
     method: 'GET',
@@ -147,4 +148,17 @@ function fetchRecipeDetails(recipeID) {
 
 document.getElementById('closeButton').addEventListener('click', function() {
     document.getElementById('recipeDetailsModal').classList.remove('is-active');
+});
+
+
+myRecipesButton.addEventListener('click', function() {
+    recipeList.innerHTML = '';
+
+    // Load all saved recipes from local storage
+    let allRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || {};
+    
+    // Convert object to array to use with displayResults function
+    let recipeArray = Object.values(allRecipes);
+
+    displayResults(recipeArray);
 });
