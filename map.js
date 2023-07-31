@@ -37,7 +37,7 @@ let searchLocation = function (input) {
 }
 
 let searchRestaurants = function (city) {
-  const url = 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=' + city + '&page=5';
+  const url = 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=' + city + '&page=1-5';
   const options = {
 	  method: 'GET',
 	  headers: {
@@ -96,7 +96,7 @@ let displayOptions = function(info) {
   restaurantCard.appendChild(cardHeader);
   //header info
   let cardTitle = document.createElement("p");
-  cardTitle.classList.add("card-header-title");
+  cardTitle.classList.add("card-header-title", "has-text-white");
   cardTitle.textContent = info.data.location.name;
   cardHeader.appendChild(cardTitle);
 
@@ -106,8 +106,9 @@ let displayOptions = function(info) {
   restaurantCard.appendChild(cardImg);
   // image content
   let cardImgSrc = document.createElement("img");
-  cardImgSrc.classList.add("image", "is-4by3")
-  cardImgSrc.src = info.data.location.photo.images.thumbnail.url;
+  // cardImgSrc.classList.add("image is-4by3")
+  console.log(info.data.location.photo.images.original.url)
+  cardImgSrc.src = info.data.location.photo.images.original.url;
   cardImg.appendChild(cardImgSrc);
 
   // card content
