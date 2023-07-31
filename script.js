@@ -2,6 +2,7 @@ const inputEl = document.getElementById("userInput");
 const searchButton = document.getElementById("searchButton");
 const recipeList = document.getElementById("recipeResults");
 const myRecipesButton = document.getElementById("myRecipesButton");
+const findRestaurantsBtn = document.getElementById("findRestaurantsBtn");
 
 const options = {
     method: 'GET',
@@ -47,10 +48,16 @@ function displayResults(results) {
     results.forEach(recipe => {
         const recipeDiv = document.createElement('div');
         recipeDiv.innerHTML = `
-            <img class="recipeImage" src="${recipe.image}" alt="${recipe.title}" data-id="${recipe.id}">
-            <div class="cardUnderSection">
-            <h2>${recipe.title}</h2>
-            <button class="saveButton" value="${recipe.id}">Save</button>
+            <div class="card p-3">
+                <header class="card-header has-background-link has-text-white">
+                    <p class="card-header-title has-text-white">${recipe.title}</p>
+                </header>
+                <div class="card-image">
+                    <img class="recipeImage" src="${recipe.image}" alt="${recipe.title}" data-id="${recipe.id}">
+                </div>
+                <footer class="card-footer">
+                    <button class="saveButton card-footer-item button is-info" value="${recipe.id}">Save</button>
+                </footer>
             </div>
         `;
         recipeList.appendChild(recipeDiv);
@@ -162,3 +169,7 @@ myRecipesButton.addEventListener('click', function() {
 
     displayResults(recipeArray);
 });
+
+findRestaurantsBtn.addEventListener('click', function() {
+    document.location.replace('./map.html')
+})

@@ -4,27 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Food Finder</title>
+    <title>Food Finder - Recipes</title>
 </head>
 <body>
-    <div class="container">
-        <article class="panel is-link">
-            <p class="panel-heading">
-              FOOD FINDER
-            </p>
-            <div class="panel-block">
-              <p class="control has-icons-left">
-                <input class="input is-link" type="text" id="userInput" placeholder="Search">
+  <header class="has-text-centered p-2 mb-3 has-background-link has-text-white">
+    <nav class="navbar is-link" role="navigation" aria-label="main navigation">
+      <h1 class="is-size-1">Food Finder</h1>
+      <div id="finder-navbar" class="navbar-menu">
+        <div class="navbar-start has-text-white">
+          <a id="myRecipesButton" class="navbar-item is-size-5 has-text-white ml-3">
+            My Recipes
+          </a>
+          <a id="findRestaurantsBtn" class="navbar-item is-size-5 as-text-white">
+            Find Restaurants
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="container is-fluid">
+    <section class="columns is-centered">
+        <div class= "column is-6 field has-addons box my-3">
+            <div class="control is-expanded has-icons-left">
+              <input id="userInput" class="input is-link is-rounded" type="text" placeholder="Search by recipe, cuisine, ingredients, etc">
                 <span class="icon is-left">
                   <i class="fas fa-search" aria-hidden="true"></i>
                 </span>
-              </p>
-              <button id="searchButton" class="button is-link"> Search</button>
-              <button id="myRecipesButton" class="button is-link"> My Recipes</button>
-              
             </div>
-          </article>
-    </div>
+            <div class="control">
+              <button id="searchButton" class="button is-link"> Search</button>
+            </div>
+          </div>
+      </section>
     <div id="recipeResults"></div>
     <div id="recipeDetailsModal" class="modal">
       <div class="modal-background"></div>
@@ -38,7 +49,7 @@
       </div>
       <button id="closeButton" class="modal-close is-large" aria-label="close"></button>
     </div>
-    
     <script src="./script.js"></script>
+  </main>
 </body>
 </html>

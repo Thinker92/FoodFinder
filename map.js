@@ -1,5 +1,7 @@
-let searchBtn = document.querySelector("#search-btn");
-let restaurantDisplay = document.querySelector("#map-display");
+const searchBtn = document.querySelector("#search-btn");
+const restaurantDisplay = document.querySelector("#map-display");
+const findRecipesBtn = document.getElementById("findRecipesBtn")
+const myRecipesBtn = document.getElementById("myRecipesBtn");
 
 searchBtn.addEventListener("click", function (e) {
   e.preventDefault();
@@ -28,6 +30,9 @@ let searchLocation = function (input) {
 
   fetch(url, options)
   .then(function (response) {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
     return response.json();
   })
   .then(function (data) {
@@ -48,10 +53,12 @@ let searchRestaurants = function (city) {
 
   fetch(url, options)
   .then(function (response) {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
     return response.json();
   })
   .then(function (data) {
-    console.log(data)
     let restaurantResults = data.data.data
     console.log(restaurantResults)
     for (var i = 0; i < restaurantResults.length; i++) {
@@ -73,13 +80,15 @@ let getRestaurantInfo = function(id) {
 
   fetch(url, options)
     .then(function (response) {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       return response.json();
     })
     .then(function (data) {
       let restaurantInfo = data
       displayOptions(restaurantInfo)
       console.log(restaurantInfo)
-      console.log(restaurantInfo.data.location.name)
     })
 
 }
@@ -87,7 +96,7 @@ let getRestaurantInfo = function(id) {
 let displayOptions = function(info) {
   // create card for each restaurant
   let restaurantCard = document.createElement("div");
-  restaurantCard.classList.add("card", "column", "is-3", "m-2");
+  restaurantCard.classList.add("card", "column", "is-3", "m-3");
   restaurantDisplay.appendChild(restaurantCard);
 
   // card header
@@ -104,12 +113,14 @@ let displayOptions = function(info) {
   let cardImg = document.createElement("div");
   cardImg.classList.add("card-image");
   restaurantCard.appendChild(cardImg);
-  // image content
+  // image content figure
+  let cardImgFig = document.createElement("figure")
+  cardImgFig.classList.add("image", "is-3by2")
+  cardImg.appendChild(cardImgFig);
+  // image content src
   let cardImgSrc = document.createElement("img");
-  // cardImgSrc.classList.add("image is-4by3")
-  console.log(info.data.location.photo.images.original.url)
   cardImgSrc.src = info.data.location.photo.images.original.url;
-  cardImg.appendChild(cardImgSrc);
+  cardImgFig.appendChild(cardImgSrc);
 
   // card content
   let cardContent = document.createElement("div");
@@ -136,3 +147,14 @@ let displayOptions = function(info) {
   cardLink1.textContent = "Website";
   cardFooter.appendChild(cardLink1)
 }
+
+// link back to recipe search
+findRecipesBtn.addEventListener('click', function() {
+  document.location.replace('./index.html');
+})
+
+myRecipesBtn.addEventListener('click', function() {
+  document.location.replace('./index.html');
+
+
+})
