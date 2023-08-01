@@ -11,11 +11,8 @@
     <header class="has-text-centered p-2 mb-3 has-background-link has-text-white">
         <nav class="navbar is-link" role="navigation" aria-label="main navigation">
           <h1 class="is-size-1">Food Finder</h1>
-          <div id="finder-navbar" class="navbar-menu">
+          <div id="finder-navbar" class="navbar-menu ml-3">
             <div class="navbar-start has-text-white">
-              <a id="myRecipesBtn" class="navbar-item is-size-5 has-text-white ml-3">
-                My Recipes
-              </a>
               <a id="findRecipesBtn" class="navbar-item is-size-5 as-text-white">
                 Find Recipes
               </a>
@@ -33,7 +30,14 @@
                     <button id="search-btn" class="button is-link">Search</button>
                 </div>
         </section>
-        <section id="map-display" class="columns is-multiline is-centered is-vcentered">
+        <section class="columns is-centered">
+          <div id="cuisine-display" class="tags has-addons column is-3 is-hidden">
+            <!-- <span id="cuisine-tag" class="tag is-info is-medium">
+              <button id="clear-cuisine-btn" class="delete is-medium"></button>
+            </span> -->
+          </div>
+        </section>
+        <section id="map-display" class="columns is-multiline is-centered is-vcentered mt-2">
         </section>
     </main>
     <script src="./map.js"></script>

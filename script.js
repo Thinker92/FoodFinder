@@ -3,6 +3,7 @@ const searchButton = document.getElementById("searchButton");
 const recipeList = document.getElementById("recipeResults");
 const myRecipesButton = document.getElementById("myRecipesButton");
 const findRestaurantsBtn = document.getElementById("findRestaurantsBtn");
+const cuisineBtn = document.getElementById("cuisineBtn");
 
 const options = {
     method: 'GET',
@@ -101,7 +102,6 @@ function fetchRecipeDetails(recipeID) {
             return response.json();
         })
         .then(result => {
-            console.log(result);
             // Clearing Old details
             document.getElementById("ingredientsList").innerHTML = '';
             document.getElementById("stepsList").innerHTML = '';
@@ -130,6 +130,8 @@ function fetchRecipeDetails(recipeID) {
                 document.getElementById("recipeImage").src = recipe.image;
             }
 
+            let allIngredients = []
+
             result.forEach(item => {
                 item.steps.forEach(step => {
                     // Adding steps to modal
@@ -139,10 +141,16 @@ function fetchRecipeDetails(recipeID) {
                     document.getElementById("stepsList").appendChild(liStep);
 
                     step.ingredients.forEach(item => {
+
+                        let ingredientNames = item.name
+                        allIngredients.push(ingredientNames)
+                        let recipeName = recipe.title
+                        getRecipeCuisine(recipeName, allIngredients)
+
                         // Adding ingredients to modal
                         let liIngredient = document.createElement("li");
                         liIngredient.innerText = item.name;
-                        liIngredient.classList.add("tag", "is-info", "p-1", "m-2")
+                        liIngredient.classList.add("tag", "is-medium", "is-info", "p-2", "m-2")
                         document.getElementById("ingredientsList").appendChild(liIngredient);
                     })
                 })
@@ -154,6 +162,38 @@ function fetchRecipeDetails(recipeID) {
         });
 }
 
+function getRecipeCuisine(name, ingredients) {
+    const url = 'https://api.spoonacular.com/recipes/cuisine?apiKey=a83b5f63fa1d4c37a1ee15e60b50204f'
+    const options = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/x-www-form-urlencoded', 
+        },
+        body: new URLSearchParams({
+		    ingredientList: ingredients,
+		    title: name
+	    })
+        
+    }
+    fetch(url, options)
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(function (data) {
+        let recipeCuisines = data.cuisines
+        cuisineBtn.addEventListener('click', function () {
+            localStorage.setItem("savedCuisines", JSON.stringify(recipeCuisines));
+            console.log(recipeCuisines)
+
+            //window.dispatchEvent(new Event("storage"));
+
+            window.location.replace('./map.html');
+        })
+    })
+}
 
 document.getElementById('closeButton').addEventListener('click', function() {
     document.getElementById('recipeDetailsModal').classList.remove('is-active');
