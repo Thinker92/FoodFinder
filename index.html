@@ -39,15 +39,24 @@
     <div id="recipeResults"></div>
     <div id="recipeDetailsModal" class="modal">
       <div class="modal-background"></div>
-      <div class="modal-content">
-        <h1 id="recipeTitle"></h1>
-        <img id="recipeImage" src="">
-        <h2>Ingredients:</h2>
-        <ul id="ingredientsList"></ul>
-        <h2>Steps:</h2>
-        <ol id="stepsList"></ol>
-      </div>
-      <button id="closeButton" class="modal-close is-large" aria-label="close"></button>
+        <div class="modal-card p-2">
+          <header class="modal-card-head has-background-link">
+            <h1 id="recipeTitle" class="modal-card-title has-text-white"></h1>
+            <button id="closeButton" class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <figure class="image is-3by2">
+              <img id="recipeImage" class="p-2" src="">
+            </figure>
+            <h2>Ingredients:</h2>
+              <div id="ingredientsList"></div>
+            <h2>Steps:</h2>
+              <ol id="stepsList"></ol>
+          </section>
+          <footer class="modal-card-foot">
+            <button id="keywordBtn" class="button is-info is-fullwidth">Find restaurants with food like this!</button>
+          </footer>
+        </div>
     </div>
     <script src="./script.js"></script>
   </main>

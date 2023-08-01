@@ -135,12 +135,14 @@ function fetchRecipeDetails(recipeID) {
                     // Adding steps to modal
                     let liStep = document.createElement("li");
                     liStep.innerText = step.step;
+                    liStep.classList.add("p-1", "m-2")
                     document.getElementById("stepsList").appendChild(liStep);
 
                     step.ingredients.forEach(item => {
                         // Adding ingredients to modal
                         let liIngredient = document.createElement("li");
                         liIngredient.innerText = item.name;
+                        liIngredient.classList.add("tag", "is-info", "p-1", "m-2")
                         document.getElementById("ingredientsList").appendChild(liIngredient);
                     })
                 })
