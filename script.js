@@ -84,6 +84,9 @@ function addRecipeToLocalStorage(recipe) {
     localStorage.setItem("savedRecipes", JSON.stringify(allRecipes));
 }
 
+// function removeRecipeFromStorage(recipes, id) {
+//     console.log(recipes[id])
+// }
 
 function loadRecipesFromLocal() {
     let allRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
@@ -144,7 +147,7 @@ function fetchRecipeDetails(recipeID) {
 
                         let ingredientNames = item.name
                         allIngredients.push(ingredientNames)
-                        let recipeName = recipe.title
+                        let recipeName = document.getElementById("recipeTitle").innerText
                         getRecipeCuisine(recipeName, allIngredients)
 
                         // Adding ingredients to modal
@@ -186,9 +189,6 @@ function getRecipeCuisine(name, ingredients) {
         let recipeCuisines = data.cuisines
         cuisineBtn.addEventListener('click', function () {
             localStorage.setItem("savedCuisines", JSON.stringify(recipeCuisines));
-            console.log(recipeCuisines)
-
-            //window.dispatchEvent(new Event("storage"));
 
             window.location.replace('./map.html');
         })
