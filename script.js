@@ -47,36 +47,41 @@ function displayResults(results) {
     recipeList.innerHTML = '';
 
     results.forEach(recipe => {
-        const recipeDiv = document.createElement('div');
-        recipeDiv.innerHTML = `
-            <div class="card p-3">
-                <header class="card-header has-background-link has-text-white">
-                    <p class="card-header-title has-text-white">${recipe.title}</p>
-                </header>
-                <div class="card-image">
-                    <img class="recipeImage" src="${recipe.image}" alt="${recipe.title}" data-id="${recipe.id}">
+        // console.log(recipe); 
+
+        if (recipe && recipe.title && recipe.image) {
+            const recipeDiv = document.createElement('div');
+            recipeDiv.innerHTML = `
+                <div class="card p-3">
+                    <header class="card-header has-background-link has-text-white">
+                        <p class="card-header-title has-text-white">${recipe.title}</p>
+                    </header>
+                    <div class="card-image">
+                        <img class="recipeImage" src="${recipe.image}" alt="${recipe.title}" data-id="${recipe.id}">
+                    </div>
+                    <footer class="card-footer">
+                        <button class="saveButton card-footer-item button is-info" value="${recipe.id}">Save</button>
+                    </footer>
                 </div>
-                <footer class="card-footer">
-                    <button class="saveButton card-footer-item button is-info" value="${recipe.id}">Save</button>
-                </footer>
-            </div>
-        `;
-        recipeList.appendChild(recipeDiv);
+            `;
+            recipeList.appendChild(recipeDiv);
 
-        const saveButton = recipeDiv.querySelector('.saveButton');
-        const newImage = recipeDiv.querySelector('.recipeImage');
+            const saveButton = recipeDiv.querySelector('.saveButton');
+            const newImage = recipeDiv.querySelector('.recipeImage');
 
-        saveButton.addEventListener('click', function(e) {
-            console.log("Save button clicked");
-            addRecipeToLocalStorage(recipe);
-        });
+            saveButton.addEventListener('click', function(e) {
+                console.log("Save button clicked");
+                addRecipeToLocalStorage(recipe);
+            });
 
-        newImage.addEventListener('click', function(e) {
-            const recipeID = e.target.dataset.id;
-            fetchRecipeDetails(recipeID);
-        });
+            newImage.addEventListener('click', function(e) {
+                const recipeID = e.target.dataset.id;
+                fetchRecipeDetails(recipeID);
+            });
+        }
     });
 }
+
 
 function addRecipeToLocalStorage(recipe) {
     let allRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || {};
